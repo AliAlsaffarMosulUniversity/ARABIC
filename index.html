@@ -8,23 +8,26 @@
 <style>
 /* Layout: right-hand rail (RTL) with a working column; bottom tab bar on phones. Calm slate-blue ink on a soft mist ground, muted sand for marks and progress. */
 :root{
-  --bg:#f3f5f8; --surface:#ffffff; --surface2:#f6f8fb; --ink:#1f2a37; --muted:#667385; --line:#e1e6ed;
-  --brand:#3e5f86; --brand-ink:#ffffff; --brand-soft:#e7eef7; --gold:#b38f5b; --gold-soft:#f5eee3;
+  --bg:#e6e2dd; --surface:#f3f0ec; --surface2:#ebe7e2; --ink:#2b2427; --muted:#6f6467; --line:#d6cfc8;
+  --brand:#7a3340; --brand-ink:#fbf4f2; --brand-soft:#ecdcdc; --gold:#a8834f; --gold-soft:#efe5d6;
+  --ban1:#8c3a48; --ban2:#4e1b26; --ban-ink:#fbf1ef; --ban-sub:rgba(251,241,239,.78); --ban-glass:rgba(255,255,255,.12); --ban-edge:rgba(255,255,255,.22); --ban-drop:rgba(78,27,38,.38);
   --good:#3f7d5c; --good-soft:#e5f2ea; --warn:#9a7433; --warn-soft:#f6efe0; --bad:#b25a52; --bad-soft:#f8e8e6;
   --t-read:#3f7d78; --t-gram:#4f63a8; --t-expr:#a87a3c; --t-lit:#8a5a86; --t-rhet:#5d6e7c;
   --f-display:'Alexandria','Readex Pro',Tahoma,sans-serif; --f-body:'Readex Pro','Segoe UI',Tahoma,sans-serif; --f-text:'Noto Naskh Arabic','Traditional Arabic',serif;
-  --shadow:0 1px 2px rgba(31,42,55,.04),0 8px 24px rgba(31,42,55,.06);
+  --shadow:0 1px 2px rgba(60,30,35,.05),0 6px 18px rgba(60,30,35,.06);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#12171e; --surface:#19202a; --surface2:#1f2833; --ink:#e4e9f0; --muted:#97a3b3; --line:#2a3441;
-  --brand:#8fb0d8; --brand-ink:#12202f; --brand-soft:#22324a; --gold:#d3b386; --gold-soft:#332c22;
+  --bg:#151213; --surface:#1e1a1b; --surface2:#262122; --ink:#ece4e2; --muted:#a69a9b; --line:#352d2f;
+  --brand:#d6929d; --brand-ink:#2a1015; --brand-soft:#3b2228; --gold:#d3b386; --gold-soft:#332c22;
   --good:#7fc39d; --good-soft:#1d3428; --warn:#dcb878; --warn-soft:#352d1e; --bad:#e3918a; --bad-soft:#3d2422;
-  --t-read:#7cc4bd; --t-gram:#a3b1ec; --t-expr:#ddb27a; --t-lit:#cf9fcb; --t-rhet:#a9b9c6; --shadow:none; color-scheme:dark}}
+  --t-read:#7cc4bd; --t-gram:#a3b1ec; --t-expr:#ddb27a; --t-lit:#cf9fcb; --t-rhet:#a9b9c6; --shadow:none; color-scheme:dark;
+  --ban1:#6a2a36; --ban2:#2f1117; --ban-ink:#f6e9e7; --ban-sub:rgba(246,233,231,.72); --ban-glass:rgba(255,255,255,.08); --ban-edge:rgba(255,255,255,.14); --ban-drop:rgba(0,0,0,.5)}}
 :root[data-theme="dark"]{
-  --bg:#12171e; --surface:#19202a; --surface2:#1f2833; --ink:#e4e9f0; --muted:#97a3b3; --line:#2a3441;
-  --brand:#8fb0d8; --brand-ink:#12202f; --brand-soft:#22324a; --gold:#d3b386; --gold-soft:#332c22;
+  --bg:#151213; --surface:#1e1a1b; --surface2:#262122; --ink:#ece4e2; --muted:#a69a9b; --line:#352d2f;
+  --brand:#d6929d; --brand-ink:#2a1015; --brand-soft:#3b2228; --gold:#d3b386; --gold-soft:#332c22;
   --good:#7fc39d; --good-soft:#1d3428; --warn:#dcb878; --warn-soft:#352d1e; --bad:#e3918a; --bad-soft:#3d2422;
-  --t-read:#7cc4bd; --t-gram:#a3b1ec; --t-expr:#ddb27a; --t-lit:#cf9fcb; --t-rhet:#a9b9c6; --shadow:none; color-scheme:dark}
+  --t-read:#7cc4bd; --t-gram:#a3b1ec; --t-expr:#ddb27a; --t-lit:#cf9fcb; --t-rhet:#a9b9c6; --shadow:none; color-scheme:dark;
+  --ban1:#6a2a36; --ban2:#2f1117; --ban-ink:#f6e9e7; --ban-sub:rgba(246,233,231,.72); --ban-glass:rgba(255,255,255,.08); --ban-edge:rgba(255,255,255,.14); --ban-drop:rgba(0,0,0,.5)}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.8;margin:0;font-weight:400;transition:background-color .25s,color .25s}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -167,6 +170,25 @@ td input.num{width:76px;text-align:center;padding:5px 6px}
 .weekrow .wk b{display:block;font-family:var(--f-display)} .weekrow .wk span{font-size:.78rem;color:var(--muted)}
 .weekrow .ls{display:flex;flex-wrap:wrap;gap:6px}
 .tbar{display:flex;gap:6px}
+/* maroon 3D banner */
+.page-head{position:relative;overflow:hidden;isolation:isolate;align-items:center;padding:22px 26px;border-radius:18px;color:var(--ban-ink);
+  background:linear-gradient(140deg,var(--ban1) 0%,var(--ban2) 100%);
+  box-shadow:inset 0 1px 0 var(--ban-edge),inset 0 -4px 0 rgba(0,0,0,.18),0 2px 3px rgba(0,0,0,.08),0 14px 28px -12px var(--ban-drop),0 26px 40px -30px var(--ban-drop);
+  transform:perspective(900px) rotateX(1.2deg);transform-origin:center top}
+.page-head::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+  background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.18),transparent 55%),
+  repeating-linear-gradient(45deg,transparent 0 22px,rgba(255,255,255,.035) 22px 23px),
+  repeating-linear-gradient(-45deg,transparent 0 22px,rgba(255,255,255,.035) 22px 23px)}
+.page-head::after{content:"";position:absolute;inset-inline-start:-60px;bottom:-90px;width:260px;height:260px;border-radius:50%;z-index:-1;
+  background:radial-gradient(circle,rgba(255,255,255,.10),transparent 65%)}
+.page-head h1{color:var(--ban-ink);text-shadow:0 2px 0 rgba(0,0,0,.18),0 6px 14px rgba(0,0,0,.18)}
+.page-head p{color:var(--ban-sub)}
+.page-head .btn,.page-head .ibtn{background:var(--ban-glass);color:var(--ban-ink);border-color:var(--ban-edge);box-shadow:inset 0 1px 0 var(--ban-edge),0 2px 4px rgba(0,0,0,.15)}
+.page-head .btn:hover,.page-head .ibtn:hover{background:var(--ban-edge);color:var(--ban-ink);border-color:var(--ban-edge)}
+.page-head .btn.primary{background:var(--ban-ink);color:var(--ban2);border-color:transparent}
+.brand-mark{background:linear-gradient(140deg,var(--ban1),var(--ban2));color:var(--ban-ink);box-shadow:inset 0 1px 0 var(--ban-edge),0 4px 10px -3px var(--ban-drop)}
+.btn.primary{background:linear-gradient(180deg,var(--ban1),var(--ban2));color:var(--ban-ink);border-color:var(--ban2);box-shadow:inset 0 1px 0 var(--ban-edge),0 2px 5px -1px var(--ban-drop)}
+@media (prefers-reduced-motion:reduce){.page-head{transform:none}}
 .ibtn{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;transition:color .15s,border-color .15s}
 .ibtn:hover{color:var(--brand);border-color:var(--brand)}
 .ibtn svg{width:19px;height:19px}
@@ -183,7 +205,7 @@ td input.num{width:76px;text-align:center;padding:5px 6px}
   .grid2,.grid3,.split{grid-template-columns:minmax(0,1fr)}
   .lesson{grid-template-columns:minmax(0,1fr) auto} .lesson .chip{justify-self:start}
   .steprow{grid-template-columns:60px 1fr auto} .steprow .a{grid-column:1/-1;order:5}
-  h1{font-size:1.4rem}
+  h1{font-size:1.4rem} .page-head{padding:18px;border-radius:14px}
 }
 @media (prefers-reduced-motion:no-preference){.card,.unit{transition:border-color .15s}}
 </style>
